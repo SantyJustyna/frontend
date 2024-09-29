@@ -11,16 +11,16 @@ import com.vaadin.flow.router.Route;
 
 @Route("drivers")
 public class DriverView extends VerticalLayout {
-    private final DriverService driverService; // Usługa do pobierania kierowców z backendu
+    private final DriverService driverService;
 
     private Grid<Driver> driverGrid = new Grid<>(Driver.class);
-    private Button addDriverButton = new Button("Dodaj Kierowcę");
+    private Button addDriverButton = new Button("Add Driver");
 
     public DriverView(DriverService driverService) {
         this.driverService = driverService;
 
         driverGrid.setColumns("id", "name", "surname");
-        driverGrid.setItems(driverService.getAllDrivers()); // Pobiera dane z backendu
+        driverGrid.setItems(driverService.getAllDrivers());
 
         addDriverButton.addClickListener(e -> {
             openDriverForm(new Driver());

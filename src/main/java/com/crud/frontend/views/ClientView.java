@@ -11,16 +11,16 @@ import com.vaadin.flow.router.Route;
 
 @Route("clients")
 public class ClientView extends VerticalLayout {
-    private final ClientService clientService; // Usługa do pobierania klientów z backendu
+    private final ClientService clientService;
 
     private Grid<Client> clientGrid = new Grid<>(Client.class);
-    private Button addClientButton = new Button("Dodaj Klienta");
+    private Button addClientButton = new Button("Add Client");
 
     public ClientView(ClientService clientService) {
         this.clientService = clientService;
 
         clientGrid.setColumns("id", "name", "address", "mail", "vatNumber");
-        clientGrid.setItems(clientService.getAllClients()); // Pobiera dane z backendu
+        clientGrid.setItems(clientService.getAllClients());
 
         addClientButton.addClickListener(e -> {
             openClientForm(new Client());

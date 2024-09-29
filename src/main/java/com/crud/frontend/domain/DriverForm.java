@@ -9,12 +9,9 @@ import com.vaadin.flow.component.textfield.TextField;
 
 public class DriverForm extends VerticalLayout {
     private final DriverService driverService;
-
     private TextField name = new TextField("Name");
     private TextField surname = new TextField("Surname");
-
     private Button saveButton = new Button("Save");
-
     private Driver driver;
 
     public DriverForm(Driver driver, DriverService driverService) {
@@ -48,6 +45,6 @@ public class DriverForm extends VerticalLayout {
         }
 
         Notification.show("Driver saved");
-        UI.getCurrent().getPage().reload(); // Odświeża widok
+        UI.getCurrent().getPage().reload();
     }
 }

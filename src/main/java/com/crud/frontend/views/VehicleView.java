@@ -11,16 +11,16 @@ import com.vaadin.flow.router.Route;
 
 @Route("vehicles")
 public class VehicleView extends VerticalLayout {
-    private final VehicleService vehicleService; // Usługa do pobierania pojazdów z backendu
+    private final VehicleService vehicleService;
 
     private Grid<Vehicle> vehicleGrid = new Grid<>(Vehicle.class);
-    private Button addVehicleButton = new Button("Dodaj Pojazd");
+    private Button addVehicleButton = new Button("Add Vehicle");
 
     public VehicleView(VehicleService vehicleService) {
         this.vehicleService = vehicleService;
 
         vehicleGrid.setColumns("id", "plateNumber", "type", "nextInspectionDate");
-        vehicleGrid.setItems(vehicleService.getAllVehicles()); // Pobiera dane z backendu
+        vehicleGrid.setItems(vehicleService.getAllVehicles());
 
         addVehicleButton.addClickListener(e -> {
             openVehicleForm(new Vehicle());

@@ -10,7 +10,6 @@ import com.vaadin.flow.component.checkbox.Checkbox;
 
 public class OrderForm extends VerticalLayout {
     private final OrderService orderService;
-
     private TextField orderReference = new TextField("Order Reference");
     private TextField loadingPlace = new TextField("Loading Place");
     private TextField deliveryPlace = new TextField("Delivery Place");
@@ -19,10 +18,8 @@ public class OrderForm extends VerticalLayout {
     private Checkbox completed = new Checkbox("Completed");
     private TextField driverSurname = new TextField("Driver Surname");
     private TextField vehiclePlateNumber = new TextField("Vehicle Plate Number");
-
     private Button saveButton = new Button("Save");
     private Button completeOrderButton = new Button("Complete Order");
-
     private Order order;
 
     public OrderForm(Order order, OrderService orderService) {
@@ -61,12 +58,12 @@ public class OrderForm extends VerticalLayout {
         orderDto.setDriverSurname(driverSurname.getValue());
         orderDto.setPlateNumber(vehiclePlateNumber.getValue());
 
-        orderService.updateOrder(orderDto); // Zapisz zamówienie w backendzie
+        orderService.updateOrder(orderDto);
         Notification.show("Order saved");
     }
 
     private void completeOrder() {
-        orderService.markOrderAsCompleted(order.getId()); // Oznacz zamówienie jako ukończone
+        orderService.markOrderAsCompleted(order.getId());
         Notification.show("Order completed");
     }
 }

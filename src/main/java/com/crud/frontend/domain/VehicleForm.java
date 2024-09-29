@@ -11,13 +11,10 @@ import com.vaadin.flow.component.textfield.TextField;
 
 public class VehicleForm extends VerticalLayout {
     private final VehicleService vehicleService;
-
     private TextField plateNumber = new TextField("Plate Number");
     private TextField type = new TextField("Type");
     private DatePicker nextInspectionDate = new DatePicker("Inspection");
-
     private Button saveButton = new Button("Save");
-
     private Vehicle vehicle;
 
     public VehicleForm(Vehicle vehicle, VehicleService vehicleService) {

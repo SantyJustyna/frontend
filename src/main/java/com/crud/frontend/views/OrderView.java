@@ -12,28 +12,24 @@ import com.vaadin.flow.router.Route;
 
 @Route("orders")
 public class OrderView extends VerticalLayout {
-    private final OrderService orderService; // Usługa do pobierania zamówień z backendu
+    private final OrderService orderService;
 
     private Grid<Order> orderGrid = new Grid<>(Order.class);
-    private Button addOrderButton = new Button("Dodaj Zamówienie");
+    private Button addOrderButton = new Button("Add Order");
 
     public OrderView(OrderService orderService) {
         this.orderService = orderService;
 
-        // Ustawienie kolumn
         orderGrid.setColumns("id", "orderReference", "loadingPlace", "deliveryPlace", "loadingDate", "deliveryDate", "completed", "driverSurname", "plateNumber");
 
-        // Dodanie kolumny z przyciskiem do zmiany statusu
         orderGrid.addComponentColumn(order -> {
             Button completeButton = new Button("Mark as Completed");
             completeButton.addClickListener(e -> markAsCompleted(order));
             return completeButton;
         });
 
-        // Pobiera dane z backendu
-        updateGridItems(); // Wywołanie metody do pobrania danych i ustawienia ich w gridzie
+        updateGridItems();
 
-        // Przycisk do dodania nowego zamówienia
         addOrderButton.addClickListener(e -> openOrderForm(new Order()));
 
         add(orderGrid, addOrderButton);
@@ -48,14 +44,13 @@ public class OrderView extends VerticalLayout {
 
     private void markAsCompleted(Order order) {
         if (order.getId() != null) {
-            orderService.markOrderAsCompleted(order.getId()); // Oznacz zamówienie jako ukończone
+            orderService.markOrderAsCompleted(order.getId());
             Notification.show("Order marked as completed");
-            updateGridItems(); // Odśwież widok
+            updateGridItems();
         }
     }
 
     private void updateGridItems() {
-        // Pobiera zaktualizowane dane z backendu i ustawia je w gridzie
         orderGrid.setItems(orderService.getAllOrders());
     }
 }

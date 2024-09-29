@@ -9,7 +9,6 @@ import com.vaadin.flow.component.textfield.TextField;
 
 public class ClientForm extends VerticalLayout {
     private final ClientService clientService;
-
     private TextField name = new TextField("Name");
     private TextField address = new TextField("Address");
     private TextField mail = new TextField("Mail");
@@ -52,6 +51,6 @@ public class ClientForm extends VerticalLayout {
         }
 
         Notification.show("Client saved");
-        UI.getCurrent().getPage().reload(); // Odświeża widok
+        UI.getCurrent().getPage().reload();
     }
 }

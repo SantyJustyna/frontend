@@ -21,32 +21,27 @@ public class VehicleService {
         this.restTemplate = restTemplate;
     }
 
-    // Pobiera wszystkie pojazdy z backendu
     public List<Vehicle> getAllVehicles() {
         ResponseEntity<Vehicle[]> response = restTemplate.getForEntity(BACKEND_URL, Vehicle[].class);
         return Arrays.asList(response.getBody());
     }
 
-    // Pobiera pojazd po jego ID
     public Vehicle getVehicleById(Long vehicleId) {
         String url = BACKEND_URL + "/" + vehicleId;
         ResponseEntity<Vehicle> response = restTemplate.getForEntity(url, Vehicle.class);
         return response.getBody();
     }
 
-    // Dodaje nowy pojazd
     public void createVehicle(Vehicle vehicle) {
         HttpEntity<Vehicle> request = new HttpEntity<>(vehicle);
         restTemplate.postForEntity(BACKEND_URL, request, Void.class);
     }
 
-    // Aktualizuje istniejący pojazd
     public void updateVehicle(Vehicle vehicle) {
         HttpEntity<Vehicle> request = new HttpEntity<>(vehicle);
         restTemplate.exchange(BACKEND_URL, HttpMethod.PUT, request, Vehicle.class);
     }
 
-    // Usuwa pojazd po ID
     public void deleteVehicle(Long vehicleId) {
         String url = BACKEND_URL + "/" + vehicleId;
         restTemplate.exchange(url, HttpMethod.DELETE, null, Void.class);
